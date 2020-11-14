@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Trigger from "../components/Trigger"
+import Center from "../components/Center"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseOne } from "../utils/quizGenerator"
 
@@ -51,5 +52,5 @@ export default function Home() {
       </div>
     )
   }
-  return <div>{phase}</div>
+  return <Center>{phase}</Center>
 }
