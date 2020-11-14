@@ -7,8 +7,9 @@ import Center from "../components/Center"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseTwo } from "../utils/quizGenerator"
 
+const testData = testOnePhaseTwo()
+
 export default function BisectionP1() {
-  const testData = testOnePhaseTwo()
   const [index, setIndex] = useState(0)
   const [phase, setPhase] = useState("آماده")
 
