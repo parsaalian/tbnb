@@ -13,7 +13,6 @@ const Square = styled.div`
 
 function Trigger({ time, onTimeEnd }) {
   useEffect(() => {
-    console.log(time)
     setTimeout(onTimeEnd, time)
   })
 

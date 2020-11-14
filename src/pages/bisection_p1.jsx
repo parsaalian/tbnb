@@ -3,10 +3,11 @@ import Bisection from "../tests/Bisection"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseTwo } from "../utils/quizGenerator"
 
-const data = testOnePhaseTwo()
+const count = 56
+const data = testOnePhaseTwo(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {
-  if (index < 20) {
+  if (index < count) {
     sequenceRunner([
       {
         func: () => setPhase("empty"),
@@ -46,6 +47,12 @@ const onAnswer = ([index, setIndex], [phase, setPhase]) => answer => {
 
 export default function BisectionP1() {
   return (
-    <Bisection data={data} onTriggerEnd={onTriggerEnd} onAnswer={onAnswer} />
+    <Bisection
+      endLink="/bisection_p2"
+      title="بخش اول آزمون دوبخشی"
+      data={data}
+      onTriggerEnd={onTriggerEnd}
+      onAnswer={onAnswer}
+    />
   )
 }
