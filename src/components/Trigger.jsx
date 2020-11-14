@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import styled from "styled-components"
 
 const Square = styled.div`
-  background-color: black;
+  background-color: white;
   position: absolute;
   top: 50%;
   left: 50%;

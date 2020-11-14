@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'XB Niloofar';
+    src: url('XBNiloofar.woff2') format('woff2'),
+        url('XBNiloofar.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

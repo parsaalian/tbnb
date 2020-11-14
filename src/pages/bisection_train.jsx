@@ -1,3 +1,5 @@
+import "../../static/fonts/stylesheet.css"
+import "./global.css"
 import React, { useState, useEffect } from "react"
 import Trigger from "../components/Trigger"
 import Center from "../components/Center"
@@ -7,7 +9,7 @@ import { testOnePhaseOne } from "../utils/quizGenerator"
 export default function Home() {
   const testData = testOnePhaseOne()
   const [index, setIndex] = useState(0)
-  const [phase, setPhase] = useState("ready")
+  const [phase, setPhase] = useState("آماده")
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,7 +25,7 @@ export default function Home() {
           time: 500,
         },
         {
-          func: () => setPhase(index % 2 === 0 ? "short" : "long"),
+          func: () => setPhase(index % 2 === 0 ? "کوتاه" : "بلند"),
           time: 2000,
         },
         {
