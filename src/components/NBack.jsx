@@ -116,7 +116,7 @@ export default function NBack({ n, title, data, endLink, trainMode }) {
         <QuestionTitle title={title} index={index} />
         <Number
           number={data[index]}
-          time={1000 * n}
+          time={Math.max(1000, 1000 * n)}
           onTimeEnd={onTriggerEnd([index, setIndex], [phase, setPhase])}
         />
       </div>
