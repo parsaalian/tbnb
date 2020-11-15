@@ -63,7 +63,7 @@ const onAnswer = ([index, setIndex], [phase, setPhase]) => answer => {
     localStorage.setItem("targetId", id)
 
     axios
-      .post(`http://localhost:8002/p1/${id}/${csv}`, JSON.stringify({}), {
+      .post(`http://194.5.175.71:8002/p1/${id}/${csv}`, JSON.stringify({}), {
         headers: {
           "Access-Control-Allow-Origin": "*",
         },

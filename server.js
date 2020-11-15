@@ -19,6 +19,6 @@ app.post("/:p/:id/:csv", (req, res) => {
     res.json("Saved")
 })
 
-app.listen(port, () => {
-    console.log(`CSV server at http://localhost:${port}`)
+app.listen(port, "0.0.0.0", () => {
+    console.log(`CSV server at http://0.0.0.0:${port}`)
 })
