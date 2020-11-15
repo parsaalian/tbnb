@@ -3,7 +3,7 @@ import Bisection from "../components/Bisection"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseOne } from "../utils/quizGenerator"
 
-const count = 10
+const count = 20
 const data = testOnePhaseOne(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {

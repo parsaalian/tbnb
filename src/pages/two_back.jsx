@@ -4,7 +4,7 @@ import NBack from "../components/NBack"
 import sequenceRunner from "../utils/sequenceRunner"
 import { randomNumberSequence } from "../utils/quizGenerator"
 
-const count = 10
+const count = 56 + 2
 const data = randomNumberSequence(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {

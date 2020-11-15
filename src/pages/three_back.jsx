@@ -4,7 +4,7 @@ import NBack from "../components/NBack"
 import sequenceRunner from "../utils/sequenceRunner"
 import { randomNumberSequence } from "../utils/quizGenerator"
 
-const count = 10
+const count = 56 + 3
 const data = randomNumberSequence(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {
@@ -102,7 +102,7 @@ export default function ThreeBack() {
   return (
     <NBack
       n="سه"
-      endLink="/"
+      endLink="/choose"
       title="آزمون three-back"
       data={data}
       onTriggerEnd={onTriggerEnd}
