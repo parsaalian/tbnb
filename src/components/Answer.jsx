@@ -19,19 +19,19 @@ const Button = styled.button`
   }
 `
 
-function Trigger({ onAnswer }) {
+export default function Answer({ prompt, answers, onAnswer }) {
   const [hovered, setHovered] = useState("none")
 
   const handleUserKeyPress = event => {
     const { key } = event
 
-    if (key === "m") {
-      setHovered("long")
-      onAnswer("long")
-    }
     if (key === "n") {
-      setHovered("short")
-      onAnswer("short")
+      setHovered(answers[0].key)
+      onAnswer(answers[0].key)
+    }
+    if (key === "m") {
+      setHovered(answers[1].key)
+      onAnswer(answers[1].key)
     }
   }
 
@@ -45,26 +45,22 @@ function Trigger({ onAnswer }) {
 
   return (
     <Center>
-      <Button
-        onClick={e => {
-          e.preventDefault()
-          onAnswer("short")
-        }}
-        hovered={hovered === "short"}
-      >
-        کوتاه
-      </Button>
-      <Button
-        onClick={e => {
-          e.preventDefault()
-          onAnswer("long")
-        }}
-        hovered={hovered === "long"}
-      >
-        بلند
-      </Button>
+      {!!prompt && <p>{prompt}</p>}
+      <br />
+      {answers.map(answer => {
+        return (
+          <Button
+            key={answer.key}
+            onClick={e => {
+              e.preventDefault()
+              onAnswer(answer.key)
+            }}
+            hovered={hovered === answer.key}
+          >
+            {answer.text}
+          </Button>
+        )
+      })}
     </Center>
   )
 }
-
-export default Trigger

@@ -3,17 +3,18 @@ import "../../static/global.css"
 
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
-import Trigger from "../components/Trigger"
-import Answer from "../components/Answer"
-import Center from "../components/Center"
+import Number from "../components/Number"
+import Answer from "./Answer"
+import Center from "./Center"
 
 const QuestionTitle = ({ title, index }) => (
-  <p style={{ textAlign: "center" }}>
+  <p style={{ textAlign: "center", direction: "rtl" }}>
     {title} - سوال {index + 1}
   </p>
 )
 
-export default function Bisection({
+export default function NBack({
+  n,
   title,
   data,
   onTriggerEnd,
@@ -40,7 +41,20 @@ export default function Bisection({
     return (
       <div>
         <QuestionTitle title={title} index={index} />
-        <Answer onAnswer={onAnswer([index, setIndex], [phase, setPhase])} />
+        <Answer
+          prompt={`آیا این عدد را در ${n} گزینه‌ی قبلی دیده‌اید؟`}
+          answers={[
+            {
+              key: "no",
+              text: "خیر",
+            },
+            {
+              key: "yes",
+              text: "بله",
+            },
+          ]}
+          onAnswer={onAnswer([index, setIndex], [phase, setPhase])}
+        />
       </div>
     )
   }
@@ -48,8 +62,9 @@ export default function Bisection({
     return (
       <div>
         <QuestionTitle title={title} index={index} />
-        <Trigger
-          time={data[index]}
+        <Number
+          number={data[index]}
+          time={2000}
           onTimeEnd={onTriggerEnd([index, setIndex], [phase, setPhase])}
         />
       </div>

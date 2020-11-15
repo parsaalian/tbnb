@@ -16,19 +16,18 @@ export function testOnePhaseTwo(count = 56) {
 export function testOnePhaseThree(count = 56) {
     const counts = {}
     const baseArray = [400, 600, 800, 1000, 1200, 1400, 1600]
-    let current = baseArray[_.random(0, baseArray.length - 1)]
 
     _.forEach(baseArray, time => (counts[String(time)] = 0))
 
-    let shuffled = [current]
+    let shuffled = [baseArray[_.random(0, baseArray.length - 1)]]
     for (let i = 0; i < count - 1; i++) {
         const selections = _.filter(
             baseArray,
             time =>
-            current !== time && counts[String(time)] < count / baseArray.length
+            shuffled[i - 1] !== time &&
+            counts[String(time)] < count / baseArray.length
         )
         const selected = selections[_.random(0, selections.length - 1)]
-        current = selected
         counts[String(selected)] += 1
         shuffled = [...shuffled, selected]
     }
@@ -48,4 +47,8 @@ export function testOnePhaseThree(count = 56) {
         }
     }
     return shuffled
+}
+
+export function randomNumberSequence(count = 56) {
+    return _.map(_.range(count), () => _.random(0, 9))
 }

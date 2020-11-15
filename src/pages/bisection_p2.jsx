@@ -1,48 +1,78 @@
+import axios from "axios"
 import React from "react"
-import Bisection from "../tests/Bisection"
+import Bisection from "../components/Bisection"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseThree } from "../utils/quizGenerator"
 
-const count = 56
-const data = testOnePhaseThree(56)
+const count = 10
+const data = testOnePhaseThree(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {
-  if (index < 56) {
-    sequenceRunner([
-      {
-        func: () => setPhase("empty"),
-        time: 500,
-      },
-      {
-        func: () => {
-          setIndex(index + 1)
-          setPhase("answer")
-        },
-      },
-    ])
-  } else {
-    setPhase("done")
-  }
-}
-
-const onAnswer = ([index, setIndex], [phase, setPhase]) => answer => {
   sequenceRunner([
-    {
-      func: () => {},
-      time: 500,
-    },
     {
       func: () => setPhase("empty"),
       time: 500,
     },
     {
-      func: () => setPhase("آماده"),
-      time: 2000,
-    },
-    {
-      func: () => setPhase("trigger"),
+      func: () => {
+        setPhase("answer")
+      },
     },
   ])
+}
+
+const onAnswer = ([index, setIndex], [phase, setPhase]) => answer => {
+  const id = localStorage.getItem("targetId")
+
+  localStorage.setItem(
+    `${id}.p2.${index}`,
+    JSON.stringify({
+      answer,
+      duration: data[index],
+      time: new Date().toString(),
+    })
+  )
+
+  if (index < count - 1) {
+    sequenceRunner([
+      {
+        func: () => setIndex(index + 1),
+        time: 500,
+      },
+      {
+        func: () => setPhase("empty"),
+        time: 500,
+      },
+      {
+        func: () => setPhase("آماده"),
+        time: 2000,
+      },
+      {
+        func: () => setPhase("trigger"),
+      },
+    ])
+  } else {
+    let csv = "id,index,time,duration,answer__NEWLINE__"
+
+    for (let i = 0; i < count; i++) {
+      const { answer, duration, time } = JSON.parse(
+        localStorage.getItem(`${id}.p2.${i}`)
+      )
+      csv += `${id},${i},${time},${duration},${answer}__NEWLINE__`
+    }
+    localStorage.clear()
+    localStorage.setItem("targetId", id)
+
+    axios
+      .post(`http://localhost:8002/p2/${id}/${csv}`, JSON.stringify({}), {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+
+      .then(res => console.log(res))
+    setPhase("done")
+  }
 }
 
 export default function BisectionP2() {

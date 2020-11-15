@@ -1,9 +1,9 @@
 import React from "react"
-import Bisection from "../tests/Bisection"
+import Bisection from "../components/Bisection"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseOne } from "../utils/quizGenerator"
 
-const count = 20
+const count = 10
 const data = testOnePhaseOne(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {
