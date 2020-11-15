@@ -16,6 +16,7 @@
     "dependencies": {
         "axios": "^0.21.0",
         "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "gatsby": "^2.25.3",
         "gatsby-source-filesystem": "^2.5.0",

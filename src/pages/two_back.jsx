@@ -4,7 +4,7 @@ import NBack from "../components/NBack"
 import sequenceRunner from "../utils/sequenceRunner"
 import { randomNumberSequence } from "../utils/quizGenerator"
 
-const count = 56 + 2
+const count = Number(process.env.COUNT) + 2
 const data = randomNumberSequence(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {
@@ -86,7 +86,7 @@ const onAnswer = ([index, setIndex], [phase, setPhase]) => answer => {
     localStorage.setItem("targetId", id)
 
     axios
-      .post(`http://194.5.175.71:8002/2b/${id}/${csv}`, JSON.stringify({}), {
+      .post(`${process.env.HOST}/2b/${id}/${csv}`, JSON.stringify({}), {
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
