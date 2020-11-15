@@ -37,7 +37,7 @@ export default function BisectionTrain() {
   return (
     <Bisection
       endLink="/one_back"
-      title="تمرین آزمون nback"
+      title="تمرین آزمون دوبخشی"
       data={data}
       onTriggerEnd={onTriggerEnd}
     />
