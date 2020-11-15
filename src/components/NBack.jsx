@@ -52,12 +52,10 @@ export default function NBack({ n, title, data, endLink, trainMode }) {
             answer = "no"
             time = "empty"
           }
-          csv += `${id},${i},${time},${data[i]},${
-            _.join(
-              _.map(_.range(n), k => data[i - k - 1]),
-              ","
-            ) + ","
-          },${answer}__NEWLINE__`
+          csv += `${id},${i},${time},${data[i]},${_.join(
+            _.map(_.range(n), k => data[i - k - 1]),
+            ","
+          )},${answer}__NEWLINE__`
         }
         localStorage.clear()
         localStorage.setItem("targetId", id)
