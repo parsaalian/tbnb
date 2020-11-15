@@ -36,8 +36,8 @@ const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {
 export default function BisectionTrain() {
   return (
     <Bisection
-      endLink="/bisection_p1"
-      title="تمرین آزمون دوبخشی"
+      endLink="/one_back"
+      title="تمرین آزمون nback"
       data={data}
       onTriggerEnd={onTriggerEnd}
     />

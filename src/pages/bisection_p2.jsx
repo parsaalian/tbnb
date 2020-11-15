@@ -4,7 +4,7 @@ import Bisection from "../components/Bisection"
 import sequenceRunner from "../utils/sequenceRunner"
 import { testOnePhaseThree } from "../utils/quizGenerator"
 
-const count = Number(process.env.COUNT)
+const count = 56
 const data = testOnePhaseThree(count)
 
 const onTriggerEnd = ([index, setIndex], [phase, setPhase]) => () => {

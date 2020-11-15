@@ -2,11 +2,17 @@ import React from "react"
 import NBack from "../components/NBack"
 import { randomNumberSequence } from "../utils/quizGenerator"
 
-const count = 24 + 2
+const count = 20
 const data = randomNumberSequence(count)
 
-export default function OneBack() {
+export default function NBackTrain() {
   return (
-    <NBack n={2} endLink="/three_back" title="آزمون two-back" data={data} />
+    <NBack
+      n={0}
+      endLink="/one_back"
+      title="یادگیری nback"
+      data={data}
+      trainMode={true}
+    />
   )
 }

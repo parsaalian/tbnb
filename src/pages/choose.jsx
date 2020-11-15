@@ -13,8 +13,8 @@ export default function Start() {
       </Link>
       <br />
       <br />
-      <Link style={{ color: "white", direction: "rtl" }} to="/one_back">
-        آزمون NBack
+      <Link style={{ color: "white", direction: "rtl" }} to="/back_train">
+        NBack آزمون
       </Link>
     </Center>
   )
