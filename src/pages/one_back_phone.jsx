@@ -1,5 +1,5 @@
 import React from "react"
-import NBack from "../components/NBack"
+import NBack from "../components/NBackPhone"
 import { randomNumberSequence } from "../utils/quizGenerator"
 
 export default function OneBack() {

@@ -49,6 +49,49 @@ export function testOnePhaseThree(count = 56) {
     return shuffled
 }
 
-export function randomNumberSequence(count = 56) {
-    return _.map(_.range(count), () => _.random(0, 9))
+function choice(startPoint, endPoint, count) {
+    let chosen = 0;
+    let array = {};
+    while (chosen < count) {
+        const selected = _.random(startPoint, endPoint);
+        if (!array[selected]) {
+            array[selected] = true;
+            chosen += 1;
+        }
+    }
+    return Object.keys(array);
+}
+
+function selectWithExclusion(exclude) {
+    let initial = {};
+    for (let i = 0; i < 10; i++) {
+        initial[i] = true;
+    }
+    for (let i = 0; i < exclude.length; i++) {
+        delete initial[exclude[i]];
+    }
+    initial = Object.keys(initial);
+    return Number(initial[_.random(0, initial.length - 1)]);
+}
+
+export function randomNumberSequence(count = 56, m = 1) {
+    let array = [];
+    for (let i = 0; i < count; i++) {
+        let selected = selectWithExclusion(array.slice(i - m, i));
+        array = [...array, selected];
+    }
+    let selection = choice(m, count - 1, _.floor((count - m) / 5)).map(Number);
+    for (let i = 0; i < selection.length; i++) {
+        const values = array.slice(selection[i] - m, selection[i]);
+        array[selection[i]] = values[_.random(0, m - 1)]
+    }
+    selection = [...selection, array.length - 1];
+    for (let i = 0; i < selection.length - 1; i++) {
+        const first = selection[i] + 1;
+        const second = _.min([selection[i] + m, selection[i + 1]]);
+        for (let j = first; j < second; j++) {
+            array[j] = selectWithExclusion(array.slice(j - m, j));
+        }
+    }
+    return array;
 }
