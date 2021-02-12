@@ -80,7 +80,7 @@ export default function NBack({ n, title, data, endLink, trainMode }) {
         localStorage.setItem("targetId", id)
 
         axios
-          .post(`${process.env.HOST}/${n}b/${id}/${csv}`, JSON.stringify({}), {
+          .post(`${process.env.HOST}/${n}bm/${id}/${csv}`, JSON.stringify({}), {
             headers: {
               "Access-Control-Allow-Origin": "*",
             },
