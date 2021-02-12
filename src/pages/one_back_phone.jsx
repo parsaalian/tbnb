@@ -6,5 +6,5 @@ export default function OneBack() {
   const count = 24 + 1
   const data = randomNumberSequence(count, 1)
   
-  return <NBack n={1} endLink="/two_back" title="آزمون one-back" data={data} />
+  return <NBack n={1} endLink="/two_back_phone" title="آزمون one-back" data={data} />
 }

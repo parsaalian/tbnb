@@ -7,6 +7,6 @@ export default function OneBack() {
   const data = randomNumberSequence(count, 2)
 
   return (
-    <NBack n={2} endLink="/three_back" title="آزمون two-back" data={data} />
+    <NBack n={2} endLink="/three_back_phone" title="آزمون two-back" data={data} />
   )
 }

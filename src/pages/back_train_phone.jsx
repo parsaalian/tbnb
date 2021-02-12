@@ -9,7 +9,7 @@ export default function NBackTrain() {
   return (
     <NBack
       n={0}
-      endLink="/one_back"
+      endLink="/one_back_phone"
       title="یادگیری nback"
       data={data}
       trainMode={true}
