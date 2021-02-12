@@ -80,7 +80,7 @@ export function randomNumberSequence(count = 56, m = 1) {
         let selected = selectWithExclusion(array.slice(i - m, i));
         array = [...array, selected];
     }
-    let selection = choice(m, count - 1, _.floor((count - m) / 5)).map(Number);
+    let selection = choice(m, count - 1, _.floor((count - m) / 3)).map(Number);
     for (let i = 0; i < selection.length; i++) {
         const values = array.slice(selection[i] - m, selection[i]);
         array[selection[i]] = values[_.random(0, m - 1)]
