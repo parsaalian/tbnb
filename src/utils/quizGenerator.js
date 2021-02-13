@@ -74,23 +74,30 @@ function selectWithExclusion(exclude) {
     return Number(initial[_.random(0, initial.length - 1)]);
 }
 
+function test(array, m) {
+    console.log(m);
+    console.log(array);
+    let count = 0;
+    for (let i = 0; i < array.length; i++) {
+        const pre = array.slice(i - m, i);
+        if (pre.filter(x => x === array[i]).length > 0) {
+            count++;
+        }
+    }
+    console.log(count);
+}
+
 export function randomNumberSequence(count = 56, m = 1) {
     let array = [];
+    let selection = choice(m, count - 1, _.floor((count) / 3)).map(Number);
     for (let i = 0; i < count; i++) {
-        let selected = selectWithExclusion(array.slice(i - m, i));
-        array = [...array, selected];
-    }
-    let selection = choice(m, count - 1, _.floor((count - m) / 3)).map(Number);
-    for (let i = 0; i < selection.length; i++) {
-        const values = array.slice(selection[i] - m, selection[i]);
-        array[selection[i]] = values[_.random(0, m - 1)]
-    }
-    selection = [...selection, array.length - 1];
-    for (let i = 0; i < selection.length - 1; i++) {
-        const first = selection[i] + 1;
-        const second = _.min([selection[i] + m, selection[i + 1]]);
-        for (let j = first; j < second; j++) {
-            array[j] = selectWithExclusion(array.slice(j - m, j));
+        if (selection.length > 0 && i === selection[0]) {
+            const values = array.slice(i - m, i);
+            array = [...array, values[_.random(0, m - 1)]];
+            selection = selection.slice(1)
+        } else {
+            const selected = selectWithExclusion(array.slice(i - m, i));
+            array = [...array, selected];
         }
     }
     return array;
