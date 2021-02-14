@@ -50,55 +50,55 @@ export function testOnePhaseThree(count = 56) {
 }
 
 function choice(startPoint, endPoint, count) {
-    let chosen = 0;
-    let array = {};
+    let chosen = 0
+    let array = {}
     while (chosen < count) {
-        const selected = _.random(startPoint, endPoint);
+        const selected = _.random(startPoint, endPoint)
         if (!array[selected]) {
-            array[selected] = true;
-            chosen += 1;
+            array[selected] = true
+            chosen += 1
         }
     }
-    return Object.keys(array);
+    return Object.keys(array)
 }
 
 function selectWithExclusion(exclude) {
-    let initial = {};
+    let initial = {}
     for (let i = 0; i < 10; i++) {
-        initial[i] = true;
+        initial[i] = true
     }
     for (let i = 0; i < exclude.length; i++) {
-        delete initial[exclude[i]];
+        delete initial[exclude[i]]
     }
-    initial = Object.keys(initial);
-    return Number(initial[_.random(0, initial.length - 1)]);
+    initial = Object.keys(initial)
+    return Number(initial[_.random(0, initial.length - 1)])
 }
 
 function test(array, m) {
-    console.log(m);
-    console.log(array);
-    let count = 0;
+    console.log(m)
+    console.log(array)
+    let count = 0
     for (let i = 0; i < array.length; i++) {
-        const pre = array.slice(i - m, i);
-        if (pre.filter(x => x === array[i]).length > 0) {
-            count++;
+        if (array[i] === array[i - m]) {
+            count++
         }
     }
-    console.log(count);
+    console.log(count)
 }
 
 export function randomNumberSequence(count = 56, m = 1) {
-    let array = [];
-    let selection = choice(m, count - 1, _.floor((count) / 3)).map(Number);
+    let array = []
+    let selection = choice(m, count - 1, _.floor(count / 3)).map(Number)
+    console.log(selection)
     for (let i = 0; i < count; i++) {
         if (selection.length > 0 && i === selection[0]) {
-            const values = array.slice(i - m, i);
-            array = [...array, values[_.random(0, m - 1)]];
+            array = [...array, array[i - m]]
             selection = selection.slice(1)
         } else {
-            const selected = selectWithExclusion(array.slice(i - m, i));
-            array = [...array, selected];
+            const selected = selectWithExclusion(array.slice(i - m, i))
+            array = [...array, selected]
         }
     }
-    return array;
+    console.log(array)
+    return array
 }
